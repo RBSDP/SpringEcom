@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.SpringEcom.model.Product;
 import com.example.SpringEcom.repo.ProductRepo;
 
+@Service
 public class ProductService {
     
     @Autowired
@@ -36,6 +38,6 @@ public class ProductService {
     }
 
     public List<Product> searchProducts(String keyword) {
-        return productRepo.findByNameContainingIgnoreCase(keyword);
+        return productRepo.searchProducts(keyword);
     }
 }

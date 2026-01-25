@@ -24,13 +24,13 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String brand;
     private BigDecimal price;
     private String category;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date releaseDate;
     private boolean productAvailable;
     private int stockQuantity;
@@ -40,3 +40,16 @@ public class Product {
     private byte[] imageData;
     
 }
+
+
+//{
+//
+//        "name":"Nothing",
+//        "description":"this is cmf phone",
+//        " brand":"Nothing",
+//        " price":3199,
+//        " category":"ELECTRONICS",
+//        "releaseDate":"2024-08-12",
+//        "productAvailable":true,
+//        "stockQuantity ":24
+//        }
