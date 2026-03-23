@@ -13,7 +13,7 @@ import com.example.SpringEcom.model.Product;
 import com.example.SpringEcom.service.ProductService;
 
 import jakarta.persistence.PostLoad;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api")
