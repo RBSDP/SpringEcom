@@ -1,6 +1,9 @@
 
  package com.example.SpringEcom.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,9 +14,12 @@ import com.example.SpringEcom.model.dto.OrderItemRequest;
 import com.example.SpringEcom.model.dto.OrderItemResponse;
 import com.example.SpringEcom.model.dto.OrderRequest;
 import com.example.SpringEcom.model.dto.OrderResponse;
+import com.example.SpringEcom.repo.OrderRepo;
 import com.example.SpringEcom.repo.ProductRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Service
+ @Service
 public class OrderService {
 
     @Autowired
@@ -30,12 +36,12 @@ public class OrderService {
         order.setStatus("PLACED");
         order.setOrderDate(LocalDate.now());
 
-        List<Order> orderItems = new ArrayList<>();
+        List<OrderItem> orderItems = new ArrayList<>();
         for(OrderItemRequest itemreq : orderRequest.items()) {
             Product product =  productRepo.findById(itemreq.productId())
                                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + itemreq.productId()));
 
-            product.setQuantity(product.getQuantity() - itemreq.quantity());
+            product.setStockQuantity(product.getStockQuantity() - itemreq.quantity());
             productRepo.save(product);
             
             OrderItem orderItem = new OrderItem();

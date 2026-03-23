@@ -2,6 +2,8 @@
 
 package com.example.SpringEcom.controller;
 
+import com.example.SpringEcom.model.dto.OrderRequest;
+import com.example.SpringEcom.service.OrderService;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -18,13 +20,13 @@ import com.example.SpringEcom.model.dto.OrderResponse;
 import com.example.SpringEcom.service.ProductService;
 
 import jakarta.persistence.PostLoad;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:5173/")
 
-@RestController
+
 public class OrderController {
 
     @Autowired
