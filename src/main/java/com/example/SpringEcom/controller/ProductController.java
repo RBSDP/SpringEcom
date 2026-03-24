@@ -121,13 +121,24 @@ public class ProductController {
             return new ResponseEntity<>("Deleted", HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }}
+    }};
 
-        @GetMapping("/product/search")
-        public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
-            List<Product> products = productService.searchProducts(keyword);
-            System.out.println("searching with :" + keyword);
-            return new ResponseEntity<>(products, HttpStatus.OK);
-        };
+    @GetMapping("/product/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
+        List<Product> products = productService.searchProducts(keyword);
+        System.out.println("searching with :" + keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    };
+
+//    generate images from description
+    @PostMapping("/product/generate-description")
+    public ResponseEntity<String> generateDescription(@RequestParam String name, @RequestParam String category){
+        try{
+             String aidesc = productService.generateDescription(name,category);
+             return new ResponseEntity<>(aidesc, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    };
 }
 
